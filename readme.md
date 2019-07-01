@@ -7,8 +7,17 @@ cd docker
 docker-compose up -d
 ```
 
+### You should install dependencies the project.
+
+```bash
+composer install
+```
+
 ### Route
-As you can see below application has a route 
+As you can see below application has a route.
 ```bash
 http://localhost:1212/shipping/rates
 ```
+
+
+Note: You can see everything how i developed your task. 
