@@ -20,4 +20,4 @@ http://localhost:1212/shipping/rates
 ```
 
 
-Note: You can see everything how i developed your task. 
+Note: You can see everything how i developed your task on the ShippingController.php 
