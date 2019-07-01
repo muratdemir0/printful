@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(array('domain' => env('APP_URL')), function () {
+    Route::post('shipping/rates', 'ShippingController@index');
 });
+
