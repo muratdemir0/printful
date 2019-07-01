@@ -1,0 +1,37 @@
+printful:
+  image: teknasyon/centos-php7.1-nophalcon
+  command: sh /init.sh
+  ports:
+      - "1212:80"
+  links:
+      - printful_database
+      - printful_cache
+  volumes:
+      - ./config-files/pinfo.php:/pinfo.php
+      - ./config-files/init.sh:/init.sh
+      - ./config-files/nginx.conf:/etc/nginx/nginx.conf
+      - ./config-files/vhost.conf:/etc/nginx/conf.d/vhost.conf
+      - ./config-files/www.conf:/etc/php-fpm.d/www.conf
+      - ./config-files/php-development.ini:/etc/php.d/php-development.ini
+      - ./config-files/xdebug-profiler.ini:/etc/php.d/xdebug-profiler.ini
+      - ./config-files/xdebug-remote.ini:/etc/php.d/xdebug-remote.ini
+      - ../:/var/www
+  environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=printful_database"
+      - "REDIS_PORT=6379"
+      - "REDIS_HOST=printful_cache"
+      - "APPLICATION_ENV=development"
+
+printful_database:
+    image: mysql:5.7
+    environment:
+        - "MYSQL_ROOT_PASSWORD=secret"
+        - "MYSQL_DATABASE=printful"
+    ports:
+        - "33069:3306"
+
+printful_cache:
+    image: redis:3.0
+    ports:
+        - "63791:6379"
